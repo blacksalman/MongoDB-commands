@@ -1,0 +1,124 @@
+# MongoDB commands for Databases
+View all databases
+show dbs.
+
+create a new or switch databases
+use dbName
+
+View current databases
+db,
+
+Delete databases
+db.databases
+
+# MongoDB commands for collections
+show collections
+
+create a collections named 'salman'
+db.createCollection('salman')
+
+
+db.<collection name>.drop()
+
+
+MongoDB commands for Rows
+Insert One Rows
+db.content.insert({
+    'name': 'salman'
+    'language': 'javaScript'
+    'number': 4
+});
+db.content.find().pretty()
+
+
+Insert Many Rows
+db.content.insertMany([{
+    'name': 'salman'
+    'language': 'javaScript'
+    'number': 4
+    },
+    {
+    'name': 'rajat'
+    'language': 'python'
+    'number': 5
+    },
+    {
+    'name': 'salman'
+    'language': 'javaScript'
+    'number': 4
+    }]);
+db.content.find().pretty()
+
+Search commands in MongoDB for Databases
+db.content.find({language:'javaScript});
+
+Limit the number of rows in output
+db.content.find().pretty().limit(3)
+
+count the number of rows in output
+db.content.find().pretty().count()
+
+sorting in acendeing  order for databases
+db.content.find().sort({number:1}).pretty()
+
+sorting in decending  order for databases
+db.content.find().sort({number:-1}).pretty()
+
+find the first row matching the object
+db.content.findOne({name:'shubham'})
+
+update a row
+db.content.update({name:"rajat"},
+    {
+    'name': 'rajat'
+    'language': 'python'
+    'number': 51
+    })
+    
+
+// If we want to update the row but there no data matched but also update the row 
+//so we use {upsert:ture}
+db.content.update({name:"rajat"},
+    {
+    'name': 'rajat'
+    'language': 'python'
+    'number': 51
+    },{upsert:ture})
+
+
+MongoDB increament opreator
+db.content.upsert({name:"rajat"},
+{$inc:{
+    work:3
+}})
+
+
+MongoDB rename opreator
+db.content.upsert({name:"rajat"},
+{$rename:{
+    work:'member'
+}})
+
+
+MongoDB rename opreator to all
+db.content.upsert({},
+{$rename:{
+    work:'member'
+}})
+
+Delete row
+db.content.remove({name:'shubham'});
+
+
+Less than
+db.content.find({work:{$lt: 4}})
+
+Greater than
+db.content.find({work:{$gt: 4}})
+
+
+
+
+
+
+
